@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Lib = ImageGenAlgorithmLib;
+using ImageGenAlgorithm_Self;
 
 namespace GenAlgorithmGUI
 {

@@ -94,6 +94,10 @@
       <Project>{f13a397c-de7f-4afa-9f9c-e1e0e1cd9aef}</Project>
       <Name>ImageGenAlgorithmLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ImageGenAlgorithm_Self\ImageGenAlgorithm_Self.csproj">
+      <Project>{becd3b07-50d8-4639-818c-c3d53769cccd}</Project>
+      <Name>ImageGenAlgorithm_Self</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImageGenAlgorithm_Vector\ImageGenAlgorithm_Vector.csproj">
       <Project>{46e4aba4-aff2-47e9-9d5b-9464a035e69d}</Project>
       <Name>ImageGenAlgorithm_Vector</Name>

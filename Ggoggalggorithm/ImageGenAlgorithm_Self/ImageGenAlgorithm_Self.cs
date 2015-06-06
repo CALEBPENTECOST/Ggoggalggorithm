@@ -15,7 +15,10 @@ namespace ImageGenAlgorithm_Self
             return true;
         }
 
-        LinkedList<ParameterDelegate> testParams;
+        private LinkedList<ParameterDelegate> testParams;
+        private int x;
+        private int y;
+        private int step = 0;
 
         public ImageGenAlgorithm_Self() {
             testParams = new LinkedList<ParameterDelegate>();
@@ -27,12 +30,20 @@ namespace ImageGenAlgorithm_Self
 
         public void ImageTransformer(Image BaseImage)
         {
-            throw new NotImplementedException();
+            x = (int)BaseImage.HorizontalResolution;
+            y = (int)BaseImage.VerticalResolution;
         }
 
-        public ICollection<System.Windows.Shapes.Polygon> Step(out double Fitness, out int currentStep)
+        public ICollection<System.Drawing.Point[]> Step(out double fitness, out int currentStep)
         {
-            throw new NotImplementedException();
+            fitness = 0.0;
+            this.step++;
+            currentStep = this.step;
+
+            Point[] square = { new Point(0, 0), new Point(x, 0), new Point(x, y), new Point(0, y) };
+            LinkedList<Point[]> listOfGons = new LinkedList<Point[]>();
+            listOfGons.AddFirst(square);
+            return listOfGons;
         }
 
         public ICollection<ParameterDelegate> submitParameters()

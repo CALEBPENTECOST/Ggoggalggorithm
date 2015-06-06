@@ -90,7 +90,7 @@
             this.tableLayoutPanel_parameters.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel_parameters.ColumnCount = 2;
             this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
-            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171F));
             this.tableLayoutPanel_parameters.Location = new System.Drawing.Point(6, 50);
             this.tableLayoutPanel_parameters.Name = "tableLayoutPanel_parameters";
             this.tableLayoutPanel_parameters.RowCount = 1;
@@ -145,7 +145,7 @@
             this.groupBox_preview.Controls.Add(this.flowLayoutPanel1);
             this.groupBox_preview.Location = new System.Drawing.Point(364, 39);
             this.groupBox_preview.Name = "groupBox_preview";
-            this.groupBox_preview.Size = new System.Drawing.Size(408, 486);
+            this.groupBox_preview.Size = new System.Drawing.Size(408, 477);
             this.groupBox_preview.TabIndex = 10;
             this.groupBox_preview.TabStop = false;
             this.groupBox_preview.Text = "Image Preview";
@@ -157,7 +157,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(402, 467);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(402, 458);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // pictureBox_imgPreview

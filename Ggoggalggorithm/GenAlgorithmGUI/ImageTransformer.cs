@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing.Image;
-using System.Windows.Shapes.Polygon;
+
 
 namespace GenAlgorithmGUI
 {
@@ -27,7 +26,7 @@ namespace GenAlgorithmGUI
         /// </summary>
         /// <param name="BaseImage">The input image.</param>
         /// <param name="?"></param>
-        public void ImageTransformer(System.Drawing.Image BaseImage);
+        //void ImageTransformer(System.Drawing.Image BaseImage);
 
         /// <summary>
         /// 
@@ -35,7 +34,7 @@ namespace GenAlgorithmGUI
         /// <param name="Fitness">How close to finished the transformer believes itself to be. Should return between 0 and 1, with 1 being complete and 0 being a really crappy solution.</param>
         /// <param name="currentStep">Returns how many times the Step function has been called.</param>
         /// <returns></returns>
-        public ICollection<System.Windows.Shapes.Polygon> Step(out double Fitness, out int currentStep);
+        //ICollection<System.Windows.Shapes.Polygon> Step(out double Fitness, out int currentStep);
 
 
     }

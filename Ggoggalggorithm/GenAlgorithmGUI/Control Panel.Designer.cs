@@ -125,16 +125,19 @@
             // 
             // button_openFile
             // 
-            this.button_openFile.Location = new System.Drawing.Point(697, 12);
+            this.button_openFile.Location = new System.Drawing.Point(273, 12);
             this.button_openFile.Name = "button_openFile";
-            this.button_openFile.Size = new System.Drawing.Size(75, 23);
+            this.button_openFile.Size = new System.Drawing.Size(499, 23);
             this.button_openFile.TabIndex = 11;
-            this.button_openFile.Text = "Open...";
+            this.button_openFile.Text = "Open Image...";
             this.button_openFile.UseVisualStyleBackColor = true;
+            this.button_openFile.Click += new System.EventHandler(this.button_openFile_Click);
             // 
             // openFileDialog_openSourceImage
             // 
-            this.openFileDialog_openSourceImage.FileName = "image.bmp";
+            this.openFileDialog_openSourceImage.DefaultExt = "bmp";
+            this.openFileDialog_openSourceImage.FileName = "sourceimage.bmp";
+            this.openFileDialog_openSourceImage.Filter = "Images|*.bmp;*.jpg;*.png";
             // 
             // statusStrip1
             // 

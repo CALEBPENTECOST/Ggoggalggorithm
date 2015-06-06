@@ -64,6 +64,20 @@ namespace ImageGenAlgorithmLib
         }
 
         /// <summary>
+        /// transformIterator helper when either start or end is null (signifying a new or deleted polygon)
+        /// </summary>
+        /// <param name="exists">A polygon of drawable size and color.</param>
+        /// <returns>A polygon consisting of two points and full transparent color.</returns>
+        private static Polygon createNullTerminator(Polygon exists)
+        {
+            Polygon empty = new Polygon();
+            empty.vertices.Add(copyPoint(exists.vertices.ElementAt(0)));
+            empty.vertices.Add(copyPoint(exists.vertices.ElementAt(1)));
+            empty.baseColor = Color.FromArgb(0, empty.baseColor.R, empty.baseColor.G, empty.baseColor.B);
+            return empty;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="start"></param>
@@ -72,7 +86,27 @@ namespace ImageGenAlgorithmLib
         /// <returns>Iterator of size numSteps+2 of which each item is a frame in transformation of start to end, inclusive.</returns>
         public static System.Collections.IEnumerator transformIterator(Polygon start, Polygon end, int numSteps)
         {
-            
+            //Input validation
+            if ((start == null) & (end == null))
+            {
+                throw new ArgumentNullException("Both start and end can't be null.");
+            }
+            if (numSteps < 0)
+            {
+                throw new ArgumentException("numSteps must be positive.");
+            }
+
+            //Handle nulls for start and end
+            if (start == null)
+            {
+                start = createNullTerminator(end);
+            }
+            if (end == null)
+            {
+                end = createNullTerminator(start);
+            }
+
+            //Yield first element.
             yield return start;
 
             //Insert duplicate points if the target polygon has more points than the source polygon
@@ -80,7 +114,7 @@ namespace ImageGenAlgorithmLib
             List<Point> st = start.vertices.ToList();
             for (int i = 0; i < extraPoints; i++)
             {
-                int indexToDouble = i % start.vertices.Count;
+                int indexToDouble = (i*i) % start.vertices.Count;
                 st.Insert(indexToDouble, copyPoint(st.ElementAt(indexToDouble)));
             }
             start.vertices = st;
@@ -89,7 +123,7 @@ namespace ImageGenAlgorithmLib
             List<Point> en = end.vertices.ToList();
             for (int i = 0; i > extraPoints; i--)
             {
-                int indexToDouble = i % end.vertices.Count;
+                int indexToDouble = (i*i) % end.vertices.Count;
                 en.Insert(indexToDouble, copyPoint(en.ElementAt(indexToDouble)));
             }
             end.vertices = en;
@@ -160,7 +194,7 @@ namespace ImageGenAlgorithmLib
             {
                 throw new ArgumentException("aList and bList must be of the same length.");
             }
-            return aList.Zip(bList, (a, b) => Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.X, 2)).Sum();
+            return aList.Zip(bList, (a, b) => Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.X, 2))).Sum();
         }
     }
 }

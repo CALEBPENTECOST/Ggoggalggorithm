@@ -35,7 +35,7 @@ namespace ImageGenAlgorithm_Self
             y = (int)BaseImage.Height;
         }
 
-        public ICollection<Polygon> Step(out double fitness, out int currentStep)
+        public List<Polygon> Step(out double fitness, out int currentStep)
         {
             //Give at least one point of fitness (bigger is better for now)
             fitness = 1;
@@ -43,8 +43,8 @@ namespace ImageGenAlgorithm_Self
             currentStep = this.step;
 
             Point[] square = { new Point(0, 0), new Point(x, 0), new Point(x, y), new Point(0, y) };
-            LinkedList<Polygon> listOfGons = new LinkedList<Polygon>();
-            listOfGons.AddFirst(new Polygon(square, Color.Aqua));
+            List<Polygon> listOfGons = new List<Polygon>();
+            listOfGons.Add(new Polygon(square, Color.Aqua));
             return listOfGons;
         }
 

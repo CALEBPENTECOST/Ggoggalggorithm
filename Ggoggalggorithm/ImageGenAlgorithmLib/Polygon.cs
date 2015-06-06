@@ -85,6 +85,15 @@ namespace ImageGenAlgorithmLib
             }
             start.vertices = st;
 
+            //Do the same, but for the end polygon now.
+            List<Point> en = end.vertices.ToList();
+            for (int i = 0; i > extraPoints; i--)
+            {
+                int indexToDouble = i % end.vertices.Count;
+                en.Insert(indexToDouble, copyPoint(en.ElementAt(indexToDouble)));
+            }
+            end.vertices = en;
+
             //Rotate the list around until we find the best-fitting version.
             //This helps prevent polygons from self-intersecting and other yuckiness.
             start.vertices = start.getBestFitRotation(end.vertices);
@@ -126,6 +135,7 @@ namespace ImageGenAlgorithmLib
         //There is probably a better way to do this.
         public List<Point> getRotation(int amount)
         {
+            amount = amount % this.vertices.Count;
             List<Point> ret = new List<Point>(this.vertices);
             //Move head to tail if positive rotate
             for (int i = 0; i < amount; i++)
@@ -135,7 +145,7 @@ namespace ImageGenAlgorithmLib
                 ret.Add(head);
             }
             //Move tail to head if negative rotate
-            for (int i = 0; i > amount; i++)
+            for (int i = 0; i > amount; i--)
             {
                 Point tail = ret.ElementAt(ret.Count-1);
                 ret.Remove(tail);

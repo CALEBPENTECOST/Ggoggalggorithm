@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGenAlgorithmLib", "Ima
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGenAlgorithm_Vector", "ImageGenAlgorithm_Vector\ImageGenAlgorithm_Vector.csproj", "{46E4ABA4-AFF2-47E9-9D5B-9464A035E69D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGenAlgorithm_Self", "ImageGenAlgorithm_Self\ImageGenAlgorithm_Self.csproj", "{BECD3B07-50D8-4639-818C-C3D53769CCCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{46E4ABA4-AFF2-47E9-9D5B-9464A035E69D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46E4ABA4-AFF2-47E9-9D5B-9464A035E69D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46E4ABA4-AFF2-47E9-9D5B-9464A035E69D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BECD3B07-50D8-4639-818C-C3D53769CCCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BECD3B07-50D8-4639-818C-C3D53769CCCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BECD3B07-50D8-4639-818C-C3D53769CCCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BECD3B07-50D8-4639-818C-C3D53769CCCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

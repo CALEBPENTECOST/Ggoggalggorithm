@@ -29,21 +29,25 @@ namespace ImageGenAlgorithm_Self
             testParams.AddFirst(new ParameterDelegate("Test Integer Parameter", 99, typeof(int), throwAway));
         }
 
+<<<<<<< HEAD
         public void loadImage(Image BaseImage)
+=======
+        public void LoadImage(Image BaseImage)
+>>>>>>> master
         {
             x = (int)BaseImage.HorizontalResolution;
             y = (int)BaseImage.VerticalResolution;
         }
 
-        public ICollection<System.Drawing.Point[]> Step(out double fitness, out int currentStep)
+        public ICollection<Polygon> Step(out double fitness, out int currentStep)
         {
             fitness = 0.0;
             this.step++;
             currentStep = this.step;
 
             Point[] square = { new Point(0, 0), new Point(x, 0), new Point(x, y), new Point(0, y) };
-            LinkedList<Point[]> listOfGons = new LinkedList<Point[]>();
-            listOfGons.AddFirst(square);
+            LinkedList<Polygon> listOfGons = new LinkedList<Polygon>();
+            listOfGons.AddFirst(new Polygon(square, Color.Aqua));
             return listOfGons;
         }
 

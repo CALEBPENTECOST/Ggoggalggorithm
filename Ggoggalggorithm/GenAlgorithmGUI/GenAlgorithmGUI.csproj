@@ -43,6 +43,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control Panel.cs">
@@ -51,7 +52,6 @@
     <Compile Include="Control Panel.Designer.cs">
       <DependentUpon>Control Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageTransformer.cs" />
     <Compile Include="ImageViewBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

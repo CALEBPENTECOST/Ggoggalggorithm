@@ -28,13 +28,32 @@ namespace GenAlgorithmGUI
         int currentStep
         {
             get{return _currentStep;}
-            set { _currentStep = value; toolStripStatusLabel_step.Text = stepString + _currentStep.ToString(); }
+            set
+            {
+                _currentStep = value;
+                if(statusStrip1.InvokeRequired)
+                statusStrip1.Invoke(new Action(delegate {
+                    toolStripStatusLabel_step.Text = stepString + _currentStep.ToString();
+                }));
+                else
+                    toolStripStatusLabel_step.Text = stepString + _currentStep.ToString();
+            }
         }
 
         double currentFitness
         {
             get { return _currentFitness; }
-            set { _currentFitness = value; toolStripStatusLabel_fitness.Text = fitnessString + _currentFitness.ToString(); }
+            set
+            {
+                _currentFitness = value;
+                if (statusStrip1.InvokeRequired)
+                    statusStrip1.Invoke(new Action(delegate
+                    {
+                        toolStripStatusLabel_fitness.Text = fitnessString + _currentFitness.ToString();
+                    }));
+                else
+                    toolStripStatusLabel_fitness.Text = fitnessString + _currentFitness.ToString();
+            }
         }
 
         const string stepString = "Current Step: ";
@@ -260,6 +279,8 @@ namespace GenAlgorithmGUI
                                 break;
                             }
 
+                            currentStep = cs;
+
                             //Perfrom a step and report it
                             stepOutput = _theAlgorithm.Step(out fitness, out cs);
                             //Only report if the step is better?
@@ -287,7 +308,7 @@ namespace GenAlgorithmGUI
                                 backgroundWorker_stepProcessor.ReportProgress(0, new StepState(fitness, cs, stepOutput));
                                 break;
                             }
-
+                            currentStep = cs;
                             //Perfrom a step and report it
                             stepOutput = _theAlgorithm.Step(out fitness, out cs);
                             if (fitness > _currentFitness)

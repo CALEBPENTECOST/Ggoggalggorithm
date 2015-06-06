@@ -43,8 +43,8 @@ namespace ImageGenAlgorithm_Self
             currentStep = this.step;
 
             Point[] square = { new Point(0, 0), new Point(x, 0), new Point(x, y), new Point(0, y) };
-            LinkedList<Polygon> listOfGons = new LinkedList<Polygon>();
-            listOfGons.AddFirst(new Polygon(square, Color.Aqua));
+            List<Polygon> listOfGons = new List<Polygon>();
+            listOfGons.Add(new Polygon(square, Color.Aqua));
             return listOfGons;
         }
 

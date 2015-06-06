@@ -47,6 +47,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="ImageTransformer.cs" />
     <Compile Include="ParameterDelegate.cs" />
+    <Compile Include="Polygon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

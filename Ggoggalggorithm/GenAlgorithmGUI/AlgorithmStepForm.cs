@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -68,6 +69,7 @@ namespace GenAlgorithmGUI
 
             backgroundWorker_stepProcessor.WorkerReportsProgress = true;
             backgroundWorker_stepProcessor.ProgressChanged += backgroundWorker_stepProcessor_ProgressChanged;
+            backgroundWorker_stepProcessor.WorkerSupportsCancellation = true;
 
 
         }
@@ -125,27 +127,63 @@ namespace GenAlgorithmGUI
             pictureBox_genImage.Image = _genImage;
         }
 
+        Mutex buttonChangeMutex = new Mutex();
+        private void setButtons_currentlyRunning(bool running)
+        {
+            buttonChangeMutex.WaitOne();
+            button_stepOnce.Invoke(new Action(delegate
+            {
+                button_stepOnce.Enabled = !running;
+            }));
+            button_nextBest.Invoke(new Action(delegate
+            {
+                button_nextBest.Enabled = !running;
+            }));
+            button_start.Invoke(new Action(delegate
+            {
+                button_start.Enabled = !running;
+            }));
+            button_stop.Invoke(new Action(delegate
+            {
+                button_stop.Enabled = running;
+            }));
+            buttonChangeMutex.ReleaseMutex();
+        }
+
 
         private void button_stepOnce_Click(object sender, EventArgs e)
         {
+            //Also disable all the buttons
+            setButtons_currentlyRunning(true);
+
             //Set the stepmode and step
             _currentStepMode = StepMode.ONCE;
             backgroundWorker_stepProcessor.RunWorkerAsync();
 
 
-            
+
         }
 
 
 
         private void button_nextBest_Click(object sender, EventArgs e)
         {
+            //Also disable all the buttons
+            setButtons_currentlyRunning(true);
 
+            //Set the stepmode and step
+            _currentStepMode = StepMode.NEXTBEST;
+            backgroundWorker_stepProcessor.RunWorkerAsync();
         }
 
         private void button_start_Click(object sender, EventArgs e)
         {
+            //Also disable all the buttons
+            setButtons_currentlyRunning(true);
 
+            //Set the stepmode and step
+            _currentStepMode = StepMode.CONTINUAL;
+            backgroundWorker_stepProcessor.RunWorkerAsync();
         }
 
         private void button_stop_Click(object sender, EventArgs e)
@@ -180,38 +218,96 @@ namespace GenAlgorithmGUI
         {
             //When the background worker is told to work, it will start stepping and drawing
 
+            //
+
+
             //Or behavior is determined by the step mode
             switch (_currentStepMode)
             {
                 case StepMode.NONE:
-                    //Do nothing
-                    break;
+                    {
+                        //Do nothing
+                        break;
+                    }
                 case StepMode.ONCE:
-                    //Do one step
+                    {
+                        //Do one step
+                        double fitness;
+                        int cs;
+                        //Tell the algorithm to step
+                        var stepOutput = _theAlgorithm.Step(out fitness, out cs);
 
-                    //Tell the algorithm to step
-                    double fitness;
-                    int cs;
-                    var stepOutput = _theAlgorithm.Step(out fitness, out cs);
+                        //And report the progress
+                        backgroundWorker_stepProcessor.ReportProgress(0, new StepState(fitness, cs, stepOutput));
 
-                    //And report the progress
-                    backgroundWorker_stepProcessor.ReportProgress(0, new StepState(fitness, cs, stepOutput));
-
-
-
-                    break;
+                        break;
+                    }
                 case StepMode.NEXTBEST:
-                    //Go continually, but then stop once a better fit is found
-                    break;
+                    {
+                        //Go continually, but then stop once a better fit is found
+                        double fitness = -1;
+                        int cs = -1;
+                        List<Polygon> stepOutput = new List<Polygon>();
+
+                        do
+                        {
+                            //Do we need to cancel?
+                            Thread.Yield();
+                            Application.DoEvents();
+                            if (backgroundWorker_stepProcessor.CancellationPending)
+                            {
+                                backgroundWorker_stepProcessor.ReportProgress(0, new StepState(fitness, cs, stepOutput));
+                                break;
+                            }
+
+                            //Perfrom a step and report it
+                            stepOutput = _theAlgorithm.Step(out fitness, out cs);
+                            //Only report if the step is better?
+                            if(fitness > _currentFitness)
+                                backgroundWorker_stepProcessor.ReportProgress(0, new StepState(fitness, cs, stepOutput));
+                        }
+                        while (_currentFitness <= fitness);
+
+                        break;
+                    }
                 case StepMode.CONTINUAL:
-                    //Go continually, and only stop when cancelled
-                    break;
+                    {
+                        //Go continually, and only stop when cancelled
+                        double fitness = -1;
+                        int cs = -1;
+                        List<Polygon> stepOutput = new List<Polygon>();
+
+                        do
+                        {
+                            //Do we need to cancel?
+                            Thread.Yield();
+                            Application.DoEvents();
+                            if (backgroundWorker_stepProcessor.CancellationPending)
+                            {
+                                backgroundWorker_stepProcessor.ReportProgress(0, new StepState(fitness, cs, stepOutput));
+                                break;
+                            }
+
+                            //Perfrom a step and report it
+                            stepOutput = _theAlgorithm.Step(out fitness, out cs);
+                            if (fitness > _currentFitness)
+                                backgroundWorker_stepProcessor.ReportProgress(0, new StepState(fitness, cs, stepOutput));
+                        }
+                        while (true);
+
+
+                        break;
+                    }
                 default:
-                    //Do nothing
-                    break;
+                    {
+                        //Do nothing
+                        break;
+                    }
             }
 
             //We should only get here when we are done performing steps
+            //Reset all the buttons to normal
+            setButtons_currentlyRunning(false);
         }
 
 

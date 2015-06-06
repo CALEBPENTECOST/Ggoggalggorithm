@@ -35,7 +35,7 @@ namespace ImageGenAlgorithm_Self
             y = (int)BaseImage.Height;
         }
 
-        public ICollection<Polygon> Step(out double fitness, out int currentStep)
+        public List<Polygon> Step(out double fitness, out int currentStep)
         {
             //Give at least one point of fitness (bigger is better for now)
             fitness = 1;

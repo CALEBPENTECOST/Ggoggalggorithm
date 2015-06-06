@@ -18,11 +18,14 @@ namespace GenAlgorithmGUI
     public partial class Control_Panel : Form
     {
         //Image related goodies
-        Image previewImage = Properties.Resources.hoodoo;
-        string sourceFileName;
+        public Image previewImage = Properties.Resources.hoodoo;
+        public string sourceFileName;
 
         //Parameter list
         Dictionary<Lib.ImageTransformer, List<Lib.ParameterDelegate>> parameterListFromAlgorithm = new Dictionary<Lib.ImageTransformer,List<Lib.ParameterDelegate>>();
+        Dictionary<Control, Lib.ParameterDelegate> parameterFromControl = new Dictionary<Control, ParameterDelegate>();
+
+        AlgorithmStepForm ags;
 
         public Control_Panel()
         {
@@ -37,9 +40,10 @@ namespace GenAlgorithmGUI
             //Reset the algorithm combobox?
             comboBox_algorithms.Items.Clear();
             comboBox_algorithms.Items.AddRange(parameterListFromAlgorithm.Keys.ToArray());
-            comboBox_algorithms.SelectedIndex = 0;
-           
+            comboBox_algorithms.SelectedIndex = 0;          
         }
+
+
 
         private void resetParameterLists()
         {
@@ -118,6 +122,8 @@ namespace GenAlgorithmGUI
                     //do int stuff
                     NumericUpDown nud = new NumericUpDown();
                     nud.Value = (int)param.value;
+                    parameterFromControl.Add(nud, param);
+                    nud.ValueChanged += parameterChanged;
                     tableLayoutPanel_parameters.Controls.Add(nud,1,numParamsSoFar);
                 }
                 else
@@ -125,6 +131,8 @@ namespace GenAlgorithmGUI
                 {
                     TextBox tb = new TextBox();
                     tb.Text = (string)param.value;
+                    parameterFromControl.Add(tb, param);
+                    tb.TextChanged += parameterChanged;
                     tableLayoutPanel_parameters.Controls.Add(tb,1,numParamsSoFar);
                 }
                 else
@@ -132,10 +140,80 @@ namespace GenAlgorithmGUI
                 {
                     CheckBox cb = new CheckBox();
                     cb.Checked = (bool)param.value;
+                    parameterFromControl.Add(cb, param);
+                    cb.CheckedChanged += parameterChanged;
                     tableLayoutPanel_parameters.Controls.Add(cb,1,numParamsSoFar);
                 }
 
                 numParamsSoFar++;
+            }
+        }
+
+        void parameterChanged(object sender, EventArgs e)
+        {
+            //We need to get the correct parameter from the sender...
+            Lib.ParameterDelegate theParam = parameterFromControl[sender as Control];
+
+            //Now we set the parameter value
+            if (theParam.type == typeof(int))
+            {
+                theParam.value = (sender as NumericUpDown).Value;
+            }
+            else
+                if (theParam.type == typeof(string))
+                {
+                    theParam.value = (sender as TextBox).Text;
+                }
+                else
+                    if(theParam.type == typeof(bool))
+                    {
+                        theParam.value = (sender as CheckBox).Checked;
+                    }
+        }
+
+        private void button_applyParams_Click(object sender, EventArgs e)
+        {
+            //When we apply, we "lock in" all of the parameters, and get ready to run the algorithm
+            foreach(var v in parameterListFromAlgorithm[comboBox_algorithms.SelectedItem as ImageTransformer])
+            {
+                //For each parameter...
+                if (!v.commit())
+                {
+                    //Just crash out, I dont have time for this
+                    MessageBox.Show("Parameter Commit Error");
+                    Application.Exit();
+                }
+            }
+
+            //Now that our parameters are set up, lets get ready to run the algorithm
+            comboBox_algorithms.Enabled = false;
+            groupBox_parameters.Enabled = false;
+            //groupBox_preview.Enabled = false;
+            button_openFile.Enabled = false;
+            button_restoreParams.Enabled = false;
+            button_applyParams.Enabled = false;
+
+            //Now we open a new window, and set it up with the algorithm
+            ImageTransformer it = comboBox_algorithms.SelectedItem as ImageTransformer;
+            it.LoadImage(previewImage);
+            ags = new AlgorithmStepForm(this, it);
+            
+            ags.Show();
+
+
+            //TODO Make all forms close together
+
+
+
+        }
+        bool closedAgs = false;
+        private void Control_Panel_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!closedAgs)
+            {
+                closedAgs = true;
+                if (ags != null)
+                    ags.Close();
             }
         }
     }

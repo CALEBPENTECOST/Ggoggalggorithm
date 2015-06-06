@@ -29,19 +29,16 @@ namespace ImageGenAlgorithm_Self
             testParams.AddFirst(new ParameterDelegate("Test Integer Parameter", 99, typeof(int), throwAway));
         }
 
-<<<<<<< HEAD
-        public void loadImage(Image BaseImage)
-=======
         public void LoadImage(Image BaseImage)
->>>>>>> master
         {
-            x = (int)BaseImage.HorizontalResolution;
-            y = (int)BaseImage.VerticalResolution;
+            x = (int)BaseImage.Width;
+            y = (int)BaseImage.Height;
         }
 
         public ICollection<Polygon> Step(out double fitness, out int currentStep)
         {
-            fitness = 0.0;
+            //Give at least one point of fitness (bigger is better for now)
+            fitness = 1;
             this.step++;
             currentStep = this.step;
 

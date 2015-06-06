@@ -46,25 +46,25 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgorithmStepForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlgorithmStepForm.Designer.cs">
+      <DependentUpon>AlgorithmStepForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control Panel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control Panel.Designer.cs">
       <DependentUpon>Control Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageViewBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ImageViewBox.Designer.cs">
-      <DependentUpon>ImageViewBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AlgorithmStepForm.resx">
+      <DependentUpon>AlgorithmStepForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control Panel.resx">
       <DependentUpon>Control Panel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImageViewBox.resx">
-      <DependentUpon>ImageViewBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -36,25 +36,26 @@
             this.button_applyParams = new System.Windows.Forms.Button();
             this.comboBox_algorithms = new System.Windows.Forms.ComboBox();
             this.label_algorithms = new System.Windows.Forms.Label();
-            this.pictureBox_imgPreview = new System.Windows.Forms.PictureBox();
             this.groupBox_preview = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button_openFile = new System.Windows.Forms.Button();
             this.openFileDialog_openSourceImage = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.pictureBox_imgPreview = new System.Windows.Forms.PictureBox();
             this.groupBox_parameters.SuspendLayout();
-            this.tableLayoutPanel_parameters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).BeginInit();
             this.groupBox_preview.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox_parameters
             // 
+            this.groupBox_parameters.Controls.Add(this.textBox_value);
+            this.groupBox_parameters.Controls.Add(this.textBox_parameter);
             this.groupBox_parameters.Controls.Add(this.tableLayoutPanel_parameters);
             this.groupBox_parameters.Location = new System.Drawing.Point(12, 39);
             this.groupBox_parameters.Name = "groupBox_parameters";
-            this.groupBox_parameters.Size = new System.Drawing.Size(249, 470);
+            this.groupBox_parameters.Size = new System.Drawing.Size(346, 470);
             this.groupBox_parameters.TabIndex = 4;
             this.groupBox_parameters.TabStop = false;
             this.groupBox_parameters.Text = "Algorithm Parameters";
@@ -63,22 +64,19 @@
             // 
             this.tableLayoutPanel_parameters.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel_parameters.ColumnCount = 2;
-            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_parameters.Controls.Add(this.textBox_parameter, 0, 0);
-            this.tableLayoutPanel_parameters.Controls.Add(this.textBox_value, 1, 0);
-            this.tableLayoutPanel_parameters.Location = new System.Drawing.Point(6, 19);
+            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.tableLayoutPanel_parameters.Location = new System.Drawing.Point(6, 50);
             this.tableLayoutPanel_parameters.Name = "tableLayoutPanel_parameters";
             this.tableLayoutPanel_parameters.RowCount = 1;
             this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 444F));
-            this.tableLayoutPanel_parameters.Size = new System.Drawing.Size(237, 445);
+            this.tableLayoutPanel_parameters.Size = new System.Drawing.Size(334, 414);
             this.tableLayoutPanel_parameters.TabIndex = 7;
             // 
             // textBox_parameter
             // 
             this.textBox_parameter.Enabled = false;
-            this.textBox_parameter.Location = new System.Drawing.Point(4, 4);
+            this.textBox_parameter.Location = new System.Drawing.Point(6, 24);
             this.textBox_parameter.Name = "textBox_parameter";
             this.textBox_parameter.ReadOnly = true;
             this.textBox_parameter.Size = new System.Drawing.Size(111, 20);
@@ -89,7 +87,7 @@
             // textBox_value
             // 
             this.textBox_value.Enabled = false;
-            this.textBox_value.Location = new System.Drawing.Point(122, 4);
+            this.textBox_value.Location = new System.Drawing.Point(229, 24);
             this.textBox_value.Name = "textBox_value";
             this.textBox_value.ReadOnly = true;
             this.textBox_value.Size = new System.Drawing.Size(111, 20);
@@ -133,21 +131,12 @@
             this.label_algorithms.TabIndex = 8;
             this.label_algorithms.Text = "Algorithm";
             // 
-            // pictureBox_imgPreview
-            // 
-            this.pictureBox_imgPreview.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox_imgPreview.Name = "pictureBox_imgPreview";
-            this.pictureBox_imgPreview.Size = new System.Drawing.Size(62, 58);
-            this.pictureBox_imgPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox_imgPreview.TabIndex = 9;
-            this.pictureBox_imgPreview.TabStop = false;
-            // 
             // groupBox_preview
             // 
             this.groupBox_preview.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox_preview.Location = new System.Drawing.Point(267, 39);
+            this.groupBox_preview.Location = new System.Drawing.Point(364, 39);
             this.groupBox_preview.Name = "groupBox_preview";
-            this.groupBox_preview.Size = new System.Drawing.Size(505, 473);
+            this.groupBox_preview.Size = new System.Drawing.Size(408, 473);
             this.groupBox_preview.TabIndex = 10;
             this.groupBox_preview.TabStop = false;
             this.groupBox_preview.Text = "Image Preview";
@@ -159,7 +148,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(499, 454);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(402, 454);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // button_openFile
@@ -186,6 +175,15 @@
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // pictureBox_imgPreview
+            // 
+            this.pictureBox_imgPreview.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox_imgPreview.Name = "pictureBox_imgPreview";
+            this.pictureBox_imgPreview.Size = new System.Drawing.Size(62, 58);
+            this.pictureBox_imgPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox_imgPreview.TabIndex = 9;
+            this.pictureBox_imgPreview.TabStop = false;
+            // 
             // Control_Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,12 +203,11 @@
             this.Name = "Control_Panel";
             this.Text = "Control_Panel";
             this.groupBox_parameters.ResumeLayout(false);
-            this.tableLayoutPanel_parameters.ResumeLayout(false);
-            this.tableLayoutPanel_parameters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).EndInit();
+            this.groupBox_parameters.PerformLayout();
             this.groupBox_preview.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

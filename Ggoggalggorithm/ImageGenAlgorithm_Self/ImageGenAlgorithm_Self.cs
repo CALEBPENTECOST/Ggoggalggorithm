@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace ImageGenAlgorithm_Self
 {
-    class ImageGenAlgorithm_Self : ImageTransformer
+    public class ImageGenAlgorithm_Self : ImageTransformer
     {
         public bool throwAway(object parameterValue)
         {
@@ -23,12 +23,13 @@ namespace ImageGenAlgorithm_Self
         public ImageGenAlgorithm_Self() {
             testParams = new LinkedList<ParameterDelegate>();
 
+            testParams.AddFirst(new ParameterDelegate("Test Integer Parameter", 5, typeof(int), throwAway));
             testParams.AddFirst(new ParameterDelegate("Test String Parameter", "default value", typeof(string), throwAway));
             testParams.AddFirst(new ParameterDelegate("Test Bool Parameter", false, typeof(bool), throwAway));
             testParams.AddFirst(new ParameterDelegate("Test Integer Parameter", 99, typeof(int), throwAway));
         }
 
-        public void ImageTransformer(Image BaseImage)
+        public void loadImage(Image BaseImage)
         {
             x = (int)BaseImage.HorizontalResolution;
             y = (int)BaseImage.VerticalResolution;
@@ -46,7 +47,7 @@ namespace ImageGenAlgorithm_Self
             return listOfGons;
         }
 
-        public ICollection<ParameterDelegate> submitParameters()
+        public ICollection<ParameterDelegate> getParameters()
         {
             return testParams;
         }

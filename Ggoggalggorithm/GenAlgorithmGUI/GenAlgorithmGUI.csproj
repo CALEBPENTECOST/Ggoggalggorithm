@@ -63,6 +63,9 @@
     <EmbeddedResource Include="Control Panel.resx">
       <DependentUpon>Control Panel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImageViewBox.resx">
+      <DependentUpon>ImageViewBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -93,14 +96,17 @@
     <ProjectReference Include="..\ImageGenAlgorithmLib\ImageGenAlgorithmLib.csproj">
       <Project>{f13a397c-de7f-4afa-9f9c-e1e0e1cd9aef}</Project>
       <Name>ImageGenAlgorithmLib</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
     <ProjectReference Include="..\ImageGenAlgorithm_Self\ImageGenAlgorithm_Self.csproj">
       <Project>{becd3b07-50d8-4639-818c-c3d53769cccd}</Project>
       <Name>ImageGenAlgorithm_Self</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
     <ProjectReference Include="..\ImageGenAlgorithm_Vector\ImageGenAlgorithm_Vector.csproj">
       <Project>{46e4aba4-aff2-47e9-9d5b-9464a035e69d}</Project>
       <Name>ImageGenAlgorithm_Vector</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

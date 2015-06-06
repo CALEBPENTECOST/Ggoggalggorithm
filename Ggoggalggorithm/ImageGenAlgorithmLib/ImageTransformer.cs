@@ -26,7 +26,7 @@ namespace ImageGenAlgorithmLib
         /// </summary>
         /// <param name="BaseImage">The input image.</param>
         /// <param name="?"></param>
-        void ImageTransformer(Image BaseImage);
+        void loadImage(Image BaseImage);
 
         /// <summary>
         /// 
@@ -41,6 +41,6 @@ namespace ImageGenAlgorithmLib
         /// </summary>
         /// <returns></returns>
         /// 
-        ICollection<ParameterDelegate> submitParameters();
+        ICollection<ParameterDelegate> getParameters();
     }
 }

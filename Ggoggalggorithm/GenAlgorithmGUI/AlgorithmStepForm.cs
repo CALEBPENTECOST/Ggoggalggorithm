@@ -285,9 +285,13 @@ namespace GenAlgorithmGUI
                             stepOutput = _theAlgorithm.Step(out fitness, out cs);
                             //Only report if the step is better?
                             if(fitness > _currentFitness)
+                            {
                                 backgroundWorker_stepProcessor.ReportProgress(0, new StepState(fitness, cs, stepOutput));
+                                break;
+                            }
+                                
                         }
-                        while (_currentFitness <= fitness);
+                        while (true);
 
                         break;
                     }

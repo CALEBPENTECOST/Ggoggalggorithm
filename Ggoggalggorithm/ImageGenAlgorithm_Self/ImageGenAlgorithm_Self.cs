@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace ImageGenAlgorithm_Self
 {
-    class ImageGenAlgorithm_Self : ImageTransformer
+    public class ImageGenAlgorithm_Self : ImageTransformer
     {
         public bool throwAway(object parameterValue)
         {
@@ -23,6 +23,7 @@ namespace ImageGenAlgorithm_Self
         public ImageGenAlgorithm_Self() {
             testParams = new LinkedList<ParameterDelegate>();
 
+            testParams.AddFirst(new ParameterDelegate("Test Integer Parameter", 5, typeof(int), throwAway));
             testParams.AddFirst(new ParameterDelegate("Test String Parameter", "default value", typeof(string), throwAway));
             testParams.AddFirst(new ParameterDelegate("Test Bool Parameter", false, typeof(bool), throwAway));
             testParams.AddFirst(new ParameterDelegate("Test Integer Parameter", 99, typeof(int), throwAway));
@@ -30,13 +31,14 @@ namespace ImageGenAlgorithm_Self
 
         public void LoadImage(Image BaseImage)
         {
-            x = (int)BaseImage.HorizontalResolution;
-            y = (int)BaseImage.VerticalResolution;
+            x = (int)BaseImage.Width;
+            y = (int)BaseImage.Height;
         }
 
         public ICollection<Polygon> Step(out double fitness, out int currentStep)
         {
-            fitness = 0.0;
+            //Give at least one point of fitness (bigger is better for now)
+            fitness = 1;
             this.step++;
             currentStep = this.step;
 
@@ -46,7 +48,7 @@ namespace ImageGenAlgorithm_Self
             return listOfGons;
         }
 
-        public ICollection<ParameterDelegate> submitParameters()
+        public ICollection<ParameterDelegate> getParameters()
         {
             return testParams;
         }

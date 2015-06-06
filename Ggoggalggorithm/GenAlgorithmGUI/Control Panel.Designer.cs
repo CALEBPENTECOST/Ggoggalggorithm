@@ -29,67 +29,42 @@
         private void InitializeComponent()
         {
             this.groupBox_parameters = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel_parameters = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox_parameter = new System.Windows.Forms.TextBox();
             this.textBox_value = new System.Windows.Forms.TextBox();
+            this.textBox_parameter = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel_parameters = new System.Windows.Forms.TableLayoutPanel();
             this.button_restoreParams = new System.Windows.Forms.Button();
             this.button_applyParams = new System.Windows.Forms.Button();
             this.comboBox_algorithms = new System.Windows.Forms.ComboBox();
             this.label_algorithms = new System.Windows.Forms.Label();
-            this.pictureBox_imgPreview = new System.Windows.Forms.PictureBox();
             this.groupBox_preview = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox_imgPreview = new System.Windows.Forms.PictureBox();
             this.button_openFile = new System.Windows.Forms.Button();
             this.openFileDialog_openSourceImage = new System.Windows.Forms.OpenFileDialog();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.groupBox_parameters.SuspendLayout();
-            this.tableLayoutPanel_parameters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).BeginInit();
             this.groupBox_preview.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox_parameters
             // 
+            this.groupBox_parameters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox_parameters.Controls.Add(this.textBox_value);
+            this.groupBox_parameters.Controls.Add(this.textBox_parameter);
             this.groupBox_parameters.Controls.Add(this.tableLayoutPanel_parameters);
             this.groupBox_parameters.Location = new System.Drawing.Point(12, 39);
             this.groupBox_parameters.Name = "groupBox_parameters";
-            this.groupBox_parameters.Size = new System.Drawing.Size(249, 470);
+            this.groupBox_parameters.Size = new System.Drawing.Size(346, 483);
             this.groupBox_parameters.TabIndex = 4;
             this.groupBox_parameters.TabStop = false;
             this.groupBox_parameters.Text = "Algorithm Parameters";
             // 
-            // tableLayoutPanel_parameters
-            // 
-            this.tableLayoutPanel_parameters.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel_parameters.ColumnCount = 2;
-            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_parameters.Controls.Add(this.textBox_parameter, 0, 0);
-            this.tableLayoutPanel_parameters.Controls.Add(this.textBox_value, 1, 0);
-            this.tableLayoutPanel_parameters.Location = new System.Drawing.Point(6, 19);
-            this.tableLayoutPanel_parameters.Name = "tableLayoutPanel_parameters";
-            this.tableLayoutPanel_parameters.RowCount = 1;
-            this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 444F));
-            this.tableLayoutPanel_parameters.Size = new System.Drawing.Size(237, 445);
-            this.tableLayoutPanel_parameters.TabIndex = 7;
-            // 
-            // textBox_parameter
-            // 
-            this.textBox_parameter.Enabled = false;
-            this.textBox_parameter.Location = new System.Drawing.Point(4, 4);
-            this.textBox_parameter.Name = "textBox_parameter";
-            this.textBox_parameter.ReadOnly = true;
-            this.textBox_parameter.Size = new System.Drawing.Size(111, 20);
-            this.textBox_parameter.TabIndex = 0;
-            this.textBox_parameter.Text = "Parameter";
-            this.textBox_parameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // textBox_value
             // 
             this.textBox_value.Enabled = false;
-            this.textBox_value.Location = new System.Drawing.Point(122, 4);
+            this.textBox_value.Location = new System.Drawing.Point(229, 24);
             this.textBox_value.Name = "textBox_value";
             this.textBox_value.ReadOnly = true;
             this.textBox_value.Size = new System.Drawing.Size(111, 20);
@@ -97,9 +72,36 @@
             this.textBox_value.Text = "Value";
             this.textBox_value.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // textBox_parameter
+            // 
+            this.textBox_parameter.Enabled = false;
+            this.textBox_parameter.Location = new System.Drawing.Point(6, 24);
+            this.textBox_parameter.Name = "textBox_parameter";
+            this.textBox_parameter.ReadOnly = true;
+            this.textBox_parameter.Size = new System.Drawing.Size(111, 20);
+            this.textBox_parameter.TabIndex = 0;
+            this.textBox_parameter.Text = "Parameter";
+            this.textBox_parameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tableLayoutPanel_parameters
+            // 
+            this.tableLayoutPanel_parameters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.tableLayoutPanel_parameters.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel_parameters.ColumnCount = 2;
+            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel_parameters.Location = new System.Drawing.Point(6, 50);
+            this.tableLayoutPanel_parameters.Name = "tableLayoutPanel_parameters";
+            this.tableLayoutPanel_parameters.RowCount = 1;
+            this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_parameters.Size = new System.Drawing.Size(334, 427);
+            this.tableLayoutPanel_parameters.TabIndex = 7;
+            // 
             // button_restoreParams
             // 
-            this.button_restoreParams.Location = new System.Drawing.Point(616, 515);
+            this.button_restoreParams.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_restoreParams.Location = new System.Drawing.Point(616, 531);
             this.button_restoreParams.Name = "button_restoreParams";
             this.button_restoreParams.Size = new System.Drawing.Size(75, 23);
             this.button_restoreParams.TabIndex = 6;
@@ -108,19 +110,21 @@
             // 
             // button_applyParams
             // 
-            this.button_applyParams.Location = new System.Drawing.Point(697, 515);
+            this.button_applyParams.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_applyParams.Location = new System.Drawing.Point(697, 531);
             this.button_applyParams.Name = "button_applyParams";
             this.button_applyParams.Size = new System.Drawing.Size(75, 23);
             this.button_applyParams.TabIndex = 5;
             this.button_applyParams.Text = "Apply";
             this.button_applyParams.UseVisualStyleBackColor = true;
+            this.button_applyParams.Click += new System.EventHandler(this.button_applyParams_Click);
             // 
             // comboBox_algorithms
             // 
             this.comboBox_algorithms.FormattingEnabled = true;
             this.comboBox_algorithms.Location = new System.Drawing.Point(71, 12);
             this.comboBox_algorithms.Name = "comboBox_algorithms";
-            this.comboBox_algorithms.Size = new System.Drawing.Size(184, 21);
+            this.comboBox_algorithms.Size = new System.Drawing.Size(287, 21);
             this.comboBox_algorithms.TabIndex = 7;
             this.comboBox_algorithms.SelectedIndexChanged += new System.EventHandler(this.comboBox_algorithms_SelectedIndexChanged);
             // 
@@ -133,21 +137,15 @@
             this.label_algorithms.TabIndex = 8;
             this.label_algorithms.Text = "Algorithm";
             // 
-            // pictureBox_imgPreview
-            // 
-            this.pictureBox_imgPreview.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox_imgPreview.Name = "pictureBox_imgPreview";
-            this.pictureBox_imgPreview.Size = new System.Drawing.Size(62, 58);
-            this.pictureBox_imgPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox_imgPreview.TabIndex = 9;
-            this.pictureBox_imgPreview.TabStop = false;
-            // 
             // groupBox_preview
             // 
+            this.groupBox_preview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_preview.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox_preview.Location = new System.Drawing.Point(267, 39);
+            this.groupBox_preview.Location = new System.Drawing.Point(364, 39);
             this.groupBox_preview.Name = "groupBox_preview";
-            this.groupBox_preview.Size = new System.Drawing.Size(505, 473);
+            this.groupBox_preview.Size = new System.Drawing.Size(408, 486);
             this.groupBox_preview.TabIndex = 10;
             this.groupBox_preview.TabStop = false;
             this.groupBox_preview.Text = "Image Preview";
@@ -159,14 +157,25 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(499, 454);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(402, 467);
             this.flowLayoutPanel1.TabIndex = 10;
+            // 
+            // pictureBox_imgPreview
+            // 
+            this.pictureBox_imgPreview.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox_imgPreview.Name = "pictureBox_imgPreview";
+            this.pictureBox_imgPreview.Size = new System.Drawing.Size(62, 58);
+            this.pictureBox_imgPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox_imgPreview.TabIndex = 9;
+            this.pictureBox_imgPreview.TabStop = false;
             // 
             // button_openFile
             // 
-            this.button_openFile.Location = new System.Drawing.Point(273, 12);
+            this.button_openFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_openFile.Location = new System.Drawing.Point(364, 12);
             this.button_openFile.Name = "button_openFile";
-            this.button_openFile.Size = new System.Drawing.Size(499, 23);
+            this.button_openFile.Size = new System.Drawing.Size(408, 23);
             this.button_openFile.TabIndex = 11;
             this.button_openFile.Text = "Open Image...";
             this.button_openFile.UseVisualStyleBackColor = true;
@@ -178,20 +187,11 @@
             this.openFileDialog_openSourceImage.FileName = "sourceimage.bmp";
             this.openFileDialog_openSourceImage.Filter = "Images|*.bmp;*.jpg;*.png";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 544);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
-            this.statusStrip1.TabIndex = 12;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // Control_Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 566);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button_restoreParams);
             this.Controls.Add(this.button_openFile);
             this.Controls.Add(this.button_applyParams);
@@ -199,18 +199,17 @@
             this.Controls.Add(this.label_algorithms);
             this.Controls.Add(this.comboBox_algorithms);
             this.Controls.Add(this.groupBox_parameters);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.MaximumSize = new System.Drawing.Size(800, 600);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Control_Panel";
             this.Text = "Control_Panel";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Control_Panel_FormClosed);
             this.groupBox_parameters.ResumeLayout(false);
-            this.tableLayoutPanel_parameters.ResumeLayout(false);
-            this.tableLayoutPanel_parameters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).EndInit();
+            this.groupBox_parameters.PerformLayout();
             this.groupBox_preview.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,6 +230,5 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_parameters;
         private System.Windows.Forms.TextBox textBox_parameter;
         private System.Windows.Forms.TextBox textBox_value;
-        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

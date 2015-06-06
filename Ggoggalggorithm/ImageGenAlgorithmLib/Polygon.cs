@@ -9,7 +9,7 @@ namespace ImageGenAlgorithmLib
 {
     public class Polygon
     {
-        public ICollection<Point> vertices { get; set; }
+        public List<Point> vertices { get; set; }
         public Color baseColor { get; set; }
 
         public IEnumerator<Point> GetEnumerator()
@@ -19,7 +19,7 @@ namespace ImageGenAlgorithmLib
 
         public Polygon(ICollection<Point> pVertices, Color pBaseColor)
         {
-            this.vertices = pVertices;
+            this.vertices = pVertices.ToList();
             this.baseColor = pBaseColor;
         }
 
@@ -32,8 +32,14 @@ namespace ImageGenAlgorithmLib
 
         public Polygon()
         {
-            this.vertices = new LinkedList<Point>();
+            this.vertices = new List<Point>();
             this.baseColor = Color.Aquamarine;
+        }
+
+        private static Point copyPoint(Point a)
+        {
+            //deep copy
+            return new Point(a.X, a.Y);
         }
 
         private static Point stepPoint(Point start, Point end, float amount)
@@ -57,33 +63,94 @@ namespace ImageGenAlgorithmLib
             return Color.FromArgb(A, R, G, B);
         }
 
-        public static ICollection<Polygon> generateTransformSteps(Polygon start, Polygon end, int numSteps)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="numSteps"></param>
+        /// <returns>Iterator of size numSteps+2 of which each item is a frame in transformation of start to end, inclusive.</returns>
+        public static System.Collections.IEnumerator transformIterator(Polygon start, Polygon end, int numSteps)
         {
-            int curStep = 1;
-            float numStepsFloat = (float)numSteps;
-            LinkedList<Polygon> stepList = new LinkedList<Polygon>();
-            stepList.AddFirst(start);
+            
+            yield return start;
 
+            //Insert duplicate points if the target polygon has more points than the source polygon
             int extraPoints = end.vertices.Count - start.vertices.Count;
-            while (extraPoints > 0)
+            List<Point> st = start.vertices.ToList();
+            for (int i = 0; i < extraPoints; i++)
             {
-                //add extra points to start of polygon.
-                start.vertices.Add(start.vertices.ElementAt(start.vertices.Count - 1));
+                int indexToDouble = i % start.vertices.Count;
+                st.Insert(indexToDouble, copyPoint(st.ElementAt(indexToDouble)));
             }
+            start.vertices = st;
 
-            while (curStep < numSteps)
-            {
-                float amount = ((float)curStep) / numStepsFloat;
-                Polygon step = new Polygon();
-                for (int i = 0; 0 < start.vertices.Count; i++)
+            //Rotate the list around until we find the best-fitting version.
+            //This helps prevent polygons from self-intersecting and other yuckiness.
+            start.vertices = start.getBestFitRotation(end.vertices);
+
+            float numStepsFloat = (float)numSteps;
+            for (int curStep = 1; curStep < numSteps; curStep++)
                 {
-                    step.vertices.Add(stepPoint(start.vertices.ElementAt(i), end.vertices.ElementAt(i), amount));
+                    float amount = ((float)curStep) / numStepsFloat;
+                    Polygon step = new Polygon();
+                    for (int i = 0; 0 < start.vertices.Count; i++)
+                    {
+                        step.vertices.Add(stepPoint(start.vertices.ElementAt(i), end.vertices.ElementAt(i), amount));
+                    }
+                    step.baseColor = stepColor(start.baseColor, end.baseColor, amount);
+                    yield return step;
                 }
-                step.baseColor = stepColor(start.baseColor, end.baseColor, amount);
+            //This step removes additional points if the new poly has fewer. Points will naturally converge, so this should be pretty seamless.
+            yield return end;
+        }
+
+        public List<Point> getBestFitRotation(List<Point> toMatch)
+        {
+            List<Point> bestFound = this.vertices;
+            double bestScore = getMatchScore(bestFound, toMatch);
+
+            for (int i = 1; i < this.vertices.Count; i++)
+            {
+                List<Point> rotated = this.getRotation(i);
+                double testScore = getMatchScore(rotated, toMatch);
+                if (bestScore < testScore)
+                {
+                    bestFound = rotated;
+                    bestScore = testScore;
+                }
             }
-            //This step removes additional points if the new poly has fewer.
-            stepList.AddLast(end);
-            return stepList;
+            return bestFound;
+        }
+
+        //There is probably a better way to do this.
+        public List<Point> getRotation(int amount)
+        {
+            List<Point> ret = new List<Point>(this.vertices);
+            //Move head to tail if positive rotate
+            for (int i = 0; i < amount; i++)
+            {
+                Point head = ret.ElementAt(0);
+                ret.Remove(head);
+                ret.Add(head);
+            }
+            //Move tail to head if negative rotate
+            for (int i = 0; i > amount; i++)
+            {
+                Point tail = ret.ElementAt(ret.Count-1);
+                ret.Remove(tail);
+                ret.Insert(0, tail);
+            }
+            return ret;
+        }
+
+        private static double getMatchScore(List<Point> aList, List<Point> bList)
+        {
+            if (aList.Count != bList.Count)
+            {
+                throw new ArgumentException("aList and bList must be of the same length.");
+            }
+            return aList.Zip(bList, (a, b) => Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.X, 2)).Sum();
         }
     }
 }

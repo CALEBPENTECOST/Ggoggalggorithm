@@ -10,10 +10,20 @@ namespace ImageGenAlgorithm_Self
 {
     class ImageGenAlgorithm_Self : ImageTransformer
     {
+        public bool throwAway(object parameterValue)
+        {
+            return true;
+        }
+
+        LinkedList<ParameterDelegate> testParams;
 
         public void ImageTransformer(Image BaseImage)
         {
-            throw new NotImplementedException();
+            testParams = new LinkedList<ParameterDelegate>();
+
+            testParams.AddFirst(new ParameterDelegate("Test String Parameter", "default value", typeof(string), throwAway));
+            testParams.AddFirst(new ParameterDelegate("Test Bool Parameter", false, typeof(bool), throwAway));
+            testParams.AddFirst(new ParameterDelegate("Test Integer Parameter", 99, typeof(int), throwAway));
         }
 
         public ICollection<System.Windows.Shapes.Polygon> Step(out double Fitness, out int currentStep)
@@ -23,7 +33,7 @@ namespace ImageGenAlgorithm_Self
 
         public ICollection<ParameterDelegate> submitParameters()
         {
-            throw new NotImplementedException();
+            return testParams;
         }
     }
 }

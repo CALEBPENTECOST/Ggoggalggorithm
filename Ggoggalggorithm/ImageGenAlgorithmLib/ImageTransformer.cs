@@ -19,7 +19,7 @@ namespace ImageGenAlgorithmLib
         //We need a class that represents a child of the algorithm
 
 
-    interface ImageTransformer
+    public interface ImageTransformer
     {
 
         /// <summary>

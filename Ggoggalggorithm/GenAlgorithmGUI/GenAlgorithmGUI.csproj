@@ -89,6 +89,16 @@
   <ItemGroup>
     <None Include="Resources\hoodoo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageGenAlgorithmLib\ImageGenAlgorithmLib.csproj">
+      <Project>{f13a397c-de7f-4afa-9f9c-e1e0e1cd9aef}</Project>
+      <Name>ImageGenAlgorithmLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageGenAlgorithm_Vector\ImageGenAlgorithm_Vector.csproj">
+      <Project>{46e4aba4-aff2-47e9-9d5b-9464a035e69d}</Project>
+      <Name>ImageGenAlgorithm_Vector</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

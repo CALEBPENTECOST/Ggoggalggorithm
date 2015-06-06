@@ -4,16 +4,22 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Lib = ImageGenAlgorithmLib;
 
 namespace GenAlgorithmGUI
 {
     public partial class Control_Panel : Form
     {
+        //Image related goodies
         Image previewImage = Properties.Resources.hoodoo;
         string sourceFileName;
+
+        //Parameter list
+        Dictionary<Lib.ImageTransformer, List<Lib.ParameterDelegate>> parameterListFromAlgorithm;
 
         public Control_Panel()
         {
@@ -21,6 +27,22 @@ namespace GenAlgorithmGUI
 
             //Lets set the picturebox real quick
             refreshPreviewImage();
+
+            //Reset the parameter list real quick like
+            resetParameterLists();
+        }
+
+        private void resetParameterLists()
+        {
+            //Kill everythign in the dictionary
+            parameterListFromAlgorithm = new Dictionary<Lib.ImageTransformer, List<Lib.ParameterDelegate>>();
+
+            //Now lets add each thing inheriting from the algorithm template
+            var listOfBs = (from domainAssembly in AppDomain.CurrentDomain.GetAssemblies()
+                            from assemblyType in domainAssembly.GetTypes()
+                            where typeof(Lib.ImageTransformer).IsAssignableFrom(assemblyType)
+                            select assemblyType).ToArray();
+
         }
 
         private void refreshPreviewImage()
@@ -44,6 +66,11 @@ namespace GenAlgorithmGUI
                 button_openFile.Text = openFileDialog_openSourceImage.FileName;
                 sourceFileName = openFileDialog_openSourceImage.FileName;
             }
+        }
+
+        private void comboBox_algorithms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //We selected a new algorithm!
         }
     }
 }

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox_parameters = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel_parameters = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox_parameter = new System.Windows.Forms.TextBox();
+            this.textBox_value = new System.Windows.Forms.TextBox();
             this.button_restoreParams = new System.Windows.Forms.Button();
             this.button_applyParams = new System.Windows.Forms.Button();
             this.comboBox_algorithms = new System.Windows.Forms.ComboBox();
@@ -39,14 +42,11 @@
             this.button_openFile = new System.Windows.Forms.Button();
             this.openFileDialog_openSourceImage = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tableLayoutPanel_parameters = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox_parameter = new System.Windows.Forms.TextBox();
-            this.textBox_value = new System.Windows.Forms.TextBox();
             this.groupBox_parameters.SuspendLayout();
+            this.tableLayoutPanel_parameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).BeginInit();
             this.groupBox_preview.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel_parameters.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_parameters
@@ -58,6 +58,44 @@
             this.groupBox_parameters.TabIndex = 4;
             this.groupBox_parameters.TabStop = false;
             this.groupBox_parameters.Text = "Algorithm Parameters";
+            // 
+            // tableLayoutPanel_parameters
+            // 
+            this.tableLayoutPanel_parameters.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel_parameters.ColumnCount = 2;
+            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_parameters.Controls.Add(this.textBox_parameter, 0, 0);
+            this.tableLayoutPanel_parameters.Controls.Add(this.textBox_value, 1, 0);
+            this.tableLayoutPanel_parameters.Location = new System.Drawing.Point(6, 19);
+            this.tableLayoutPanel_parameters.Name = "tableLayoutPanel_parameters";
+            this.tableLayoutPanel_parameters.RowCount = 1;
+            this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 444F));
+            this.tableLayoutPanel_parameters.Size = new System.Drawing.Size(237, 445);
+            this.tableLayoutPanel_parameters.TabIndex = 7;
+            // 
+            // textBox_parameter
+            // 
+            this.textBox_parameter.Enabled = false;
+            this.textBox_parameter.Location = new System.Drawing.Point(4, 4);
+            this.textBox_parameter.Name = "textBox_parameter";
+            this.textBox_parameter.ReadOnly = true;
+            this.textBox_parameter.Size = new System.Drawing.Size(111, 20);
+            this.textBox_parameter.TabIndex = 0;
+            this.textBox_parameter.Text = "Parameter";
+            this.textBox_parameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_value
+            // 
+            this.textBox_value.Enabled = false;
+            this.textBox_value.Location = new System.Drawing.Point(122, 4);
+            this.textBox_value.Name = "textBox_value";
+            this.textBox_value.ReadOnly = true;
+            this.textBox_value.Size = new System.Drawing.Size(111, 20);
+            this.textBox_value.TabIndex = 1;
+            this.textBox_value.Text = "Value";
+            this.textBox_value.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button_restoreParams
             // 
@@ -84,6 +122,7 @@
             this.comboBox_algorithms.Name = "comboBox_algorithms";
             this.comboBox_algorithms.Size = new System.Drawing.Size(184, 21);
             this.comboBox_algorithms.TabIndex = 7;
+            this.comboBox_algorithms.SelectedIndexChanged += new System.EventHandler(this.comboBox_algorithms_SelectedIndexChanged);
             // 
             // label_algorithms
             // 
@@ -147,44 +186,6 @@
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // tableLayoutPanel_parameters
-            // 
-            this.tableLayoutPanel_parameters.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel_parameters.ColumnCount = 2;
-            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_parameters.Controls.Add(this.textBox_parameter, 0, 0);
-            this.tableLayoutPanel_parameters.Controls.Add(this.textBox_value, 1, 0);
-            this.tableLayoutPanel_parameters.Location = new System.Drawing.Point(6, 19);
-            this.tableLayoutPanel_parameters.Name = "tableLayoutPanel_parameters";
-            this.tableLayoutPanel_parameters.RowCount = 1;
-            this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_parameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_parameters.Size = new System.Drawing.Size(237, 445);
-            this.tableLayoutPanel_parameters.TabIndex = 7;
-            // 
-            // textBox_parameter
-            // 
-            this.textBox_parameter.Enabled = false;
-            this.textBox_parameter.Location = new System.Drawing.Point(4, 4);
-            this.textBox_parameter.Name = "textBox_parameter";
-            this.textBox_parameter.ReadOnly = true;
-            this.textBox_parameter.Size = new System.Drawing.Size(111, 20);
-            this.textBox_parameter.TabIndex = 0;
-            this.textBox_parameter.Text = "Parameter";
-            this.textBox_parameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox_value
-            // 
-            this.textBox_value.Enabled = false;
-            this.textBox_value.Location = new System.Drawing.Point(122, 4);
-            this.textBox_value.Name = "textBox_value";
-            this.textBox_value.ReadOnly = true;
-            this.textBox_value.Size = new System.Drawing.Size(111, 20);
-            this.textBox_value.TabIndex = 1;
-            this.textBox_value.Text = "Value";
-            this.textBox_value.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // Control_Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,12 +205,12 @@
             this.Name = "Control_Panel";
             this.Text = "Control_Panel";
             this.groupBox_parameters.ResumeLayout(false);
+            this.tableLayoutPanel_parameters.ResumeLayout(false);
+            this.tableLayoutPanel_parameters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imgPreview)).EndInit();
             this.groupBox_preview.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel_parameters.ResumeLayout(false);
-            this.tableLayoutPanel_parameters.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

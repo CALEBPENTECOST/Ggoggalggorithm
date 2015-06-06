@@ -8,5 +8,8 @@ namespace ImageGenAlgorithmLib
 {
     class Common
     {
+        class GgoggalggorithmException : Exception { }
+        class SolutionNotFound : GgoggalggorithmException { }
+        class InvalidSourceImage : GgoggalggorithmException { }
     }
 }

@@ -22,8 +22,21 @@ namespace GenAlgorithmGUI
     interface ImageTransformer
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="BaseImage">The input image.</param>
+        /// <param name="?"></param>
         public void ImageTransformer(System.Drawing.Image BaseImage);
 
-        public ICollection<System.Windows.Shapes.Polygon> Step(out Exception errorCode);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Fitness">How close to finished the transformer believes itself to be. Should return between 0 and 1, with 1 being complete and 0 being a really crappy solution.</param>
+        /// <param name="currentStep">Returns how many times the Step function has been called.</param>
+        /// <returns></returns>
+        public ICollection<System.Windows.Shapes.Polygon> Step(out double Fitness, out int currentStep);
+
+
     }
 }

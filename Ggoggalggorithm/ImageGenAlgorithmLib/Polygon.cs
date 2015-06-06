@@ -51,6 +51,7 @@ namespace ImageGenAlgorithmLib
                 );
         }
 
+        //Should be swapped with HSV-style transformation.
         private static Color stepColor(Color start, Color end, float amount)
         {
             float inverse = 1.0f - amount;

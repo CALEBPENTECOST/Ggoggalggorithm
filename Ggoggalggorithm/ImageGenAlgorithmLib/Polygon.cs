@@ -197,5 +197,53 @@ namespace ImageGenAlgorithmLib
             }
             return aList.Zip(bList, (a, b) => Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.X, 2))).Sum();
         }
+
+        /// <summary>
+        /// IMPORTANT: Assumes the polygon is convex.
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<Polygon> getTrianglesFromConvex(Polygon convexPolygon)
+        {
+            if (convexPolygon.vertices.Count < 3)
+            {
+                //nothing
+            }
+            else if (convexPolygon.vertices.Count == 3)
+            {
+                yield return new Polygon(convexPolygon);
+            }
+            else
+            {
+                Stack<Point> points = new Stack<Point>(convexPolygon.vertices);
+                Point origin = points.Pop();
+
+                while (points.Count > 0)
+                {
+                    Polygon triangle = new Polygon();
+                    triangle.baseColor = convexPolygon.baseColor;
+                    triangle.vertices.Add(origin);
+                    triangle.vertices.Add(points.Pop());
+                    triangle.vertices.Add(points.Peek());
+                    yield return triangle;
+                }
+            }
+        }
+
+        static public explicit operator System.Drawing.Drawing2D.GraphicsPath(Polygon p){
+            byte[] pathTypes = new byte[p.vertices.Count];
+            pathTypes[0] = (byte)System.Drawing.Drawing2D.PathPointType.Start;
+            for (int i = 1; i < p.vertices.Count - 1; i ++){
+                pathTypes[i] = (byte)System.Drawing.Drawing2D.PathPointType.Line;
+
+            }
+            pathTypes[p.vertices.Count] = (byte)System.Drawing.Drawing2D.PathPointType.Line | (byte)System.Drawing.Drawing2D.PathPointType.CloseSubpath;
+
+            return new System.Drawing.Drawing2D.GraphicsPath(p.vertices.ToArray(), pathTypes);
+        }
+
+        public static IEnumerable<Point> getPointsInTriangle(Polygon triangle)
+        {
+            throw new NotImplementedException("Not sure if this is worth it.");
+        }
     }
 }

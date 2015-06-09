@@ -52,6 +52,7 @@ namespace GenAlgorithmGUI
 
             //Go though each algorithm
             parameterListFromAlgorithm.Add(new ImageGenAlgorithm_Self.ImageGenAlgorithm_Self(), new List<ParameterDelegate>());
+            parameterListFromAlgorithm.Add(new ImageGenAlgorithm_Vector.GenAlgorithm_Vector(), new List<ParameterDelegate>());
 
             //Now lets get parameters
             foreach (var alg in parameterListFromAlgorithm.Keys)
@@ -121,6 +122,9 @@ namespace GenAlgorithmGUI
                 {
                     //do int stuff
                     NumericUpDown nud = new NumericUpDown();
+                    nud.Minimum = -1000;
+                    nud.Maximum = 1000;
+
                     nud.Value = (int)param.value;
                     parameterFromControl.Add(nud, param);
                     nud.ValueChanged += parameterChanged;
@@ -157,7 +161,7 @@ namespace GenAlgorithmGUI
             //Now we set the parameter value
             if (theParam.type == typeof(int))
             {
-                theParam.value = (sender as NumericUpDown).Value;
+                theParam.value = Convert.ToInt32((sender as NumericUpDown).Value);
             }
             else
                 if (theParam.type == typeof(string))
@@ -181,7 +185,7 @@ namespace GenAlgorithmGUI
                 {
                     //Just crash out, I dont have time for this
                     MessageBox.Show("Parameter Commit Error");
-                    Application.Exit();
+                    return;
                 }
             }
 

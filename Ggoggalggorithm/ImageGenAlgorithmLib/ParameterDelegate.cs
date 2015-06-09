@@ -32,6 +32,9 @@ namespace ImageGenAlgorithmLib
             this.value = pValue;
             this.type = pType;
             this.opToPerform = pOpToPerform;
+
+            //We should also perform the operation, in order to set up the parameters themselves
+            opToPerform(pValue);
         }
 
         public bool commit(object pValue)

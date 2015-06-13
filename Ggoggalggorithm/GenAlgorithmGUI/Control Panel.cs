@@ -18,7 +18,7 @@ namespace GenAlgorithmGUI
     public partial class Control_Panel : Form
     {
         //Image related goodies
-        public Image previewImage = Properties.Resources.hoodoo;
+        public Bitmap previewImage = Properties.Resources.hoodoo;
         public string sourceFileName;
 
         //Parameter list
@@ -52,6 +52,7 @@ namespace GenAlgorithmGUI
 
             //Go though each algorithm
             parameterListFromAlgorithm.Add(new ImageGenAlgorithm_Self.ImageGenAlgorithm_Self(), new List<ParameterDelegate>());
+            parameterListFromAlgorithm.Add(new ImageGenAlgorithm_Vector.GenAlgorithm_Vector(), new List<ParameterDelegate>());
 
             //Now lets get parameters
             foreach (var alg in parameterListFromAlgorithm.Keys)
@@ -81,7 +82,8 @@ namespace GenAlgorithmGUI
             {
                 //We got a file by the looks of it. Lets open it!
 
-                previewImage = Image.FromFile(openFileDialog_openSourceImage.FileName);
+                previewImage = new Bitmap(Image.FromFile(openFileDialog_openSourceImage.FileName));
+                
 
                 //File open all okay, it seems.
                 refreshPreviewImage();
@@ -121,6 +123,9 @@ namespace GenAlgorithmGUI
                 {
                     //do int stuff
                     NumericUpDown nud = new NumericUpDown();
+                    nud.Minimum = -1000;
+                    nud.Maximum = 1000;
+
                     nud.Value = (int)param.value;
                     parameterFromControl.Add(nud, param);
                     nud.ValueChanged += parameterChanged;
@@ -157,7 +162,7 @@ namespace GenAlgorithmGUI
             //Now we set the parameter value
             if (theParam.type == typeof(int))
             {
-                theParam.value = (sender as NumericUpDown).Value;
+                theParam.value = Convert.ToInt32((sender as NumericUpDown).Value);
             }
             else
                 if (theParam.type == typeof(string))
@@ -181,7 +186,7 @@ namespace GenAlgorithmGUI
                 {
                     //Just crash out, I dont have time for this
                     MessageBox.Show("Parameter Commit Error");
-                    Application.Exit();
+                    return;
                 }
             }
 
@@ -195,7 +200,7 @@ namespace GenAlgorithmGUI
 
             //Now we open a new window, and set it up with the algorithm
             ImageTransformer it = comboBox_algorithms.SelectedItem as ImageTransformer;
-            it.LoadImage(previewImage);
+            it.LoadImage((Bitmap)previewImage.Clone());
             ags = new AlgorithmStepForm(this, it);
             
             ags.Show();

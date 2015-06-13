@@ -24,6 +24,24 @@ namespace GenAlgorithmGUI
 
         double _currentFitness = -1;
         int _currentStep = 0;
+        int _lastBestStep = -1;
+        int _numPolys = 0;
+
+        int numPolys
+        {
+            get { return _numPolys; }
+            set
+            {
+                _numPolys = value;
+                if (statusStrip1.InvokeRequired)
+                    statusStrip1.Invoke(new Action(delegate
+                    {
+                         toolStripStatusLabel_numPolygons.Text = numPolysString + _numPolys.ToString();
+                    }));
+                else
+                    toolStripStatusLabel_numPolygons.Text = numPolysString + _numPolys.ToString();
+            }
+        }
 
         int currentStep
         {
@@ -56,9 +74,26 @@ namespace GenAlgorithmGUI
             }
         }
 
+        int lastBestStep
+        {
+            get { return _lastBestStep; }
+            set
+            {
+                _lastBestStep = value;
+                if (statusStrip1.InvokeRequired)
+                    statusStrip1.Invoke(new Action(delegate
+                    {
+                        toolStripStatusLabel_lastbestfit.Text = lastBestFitString + _lastBestStep.ToString();
+                    }));
+                else
+                    toolStripStatusLabel_lastbestfit.Text = lastBestFitString + _lastBestStep.ToString();
+            }
+        }
+
         const string stepString = "Current Step: ";
         const string fitnessString = "Current Fitness: ";
-
+        const string lastBestFitString = "Last Best Fit at Step: ";
+        const string numPolysString = "Number of Polygons: ";
 
 
 
@@ -114,36 +149,17 @@ namespace GenAlgorithmGUI
             {
                 //Fitness is better!
                 currentFitness = fitness;
+                lastBestStep = currentStep;
+                int polyCount = 0;
+                foreach (var p in stepOutput)
+                    if (!p.Ignore)
+                        polyCount++;
+                numPolys = polyCount;
 
                 //Draw the new image
-                drawGeneratedImage(stepOutput);
+                pictureBox_genImage.Image = ImageGenAlgorithmLib.Common.drawGeneratedImage(stepOutput, _genImage);
             }
 
-        }
-
-
-
-        SolidBrush solidBlack = new SolidBrush(Color.Black);
-        
-        
-
-        private void drawGeneratedImage(ICollection<Polygon> stepOutput)
-        {
-            //Take our picture box and draw on it
-            using (Graphics g = Graphics.FromImage(_genImage))
-            {
-                //Draw it all black
-                g.FillRectangle(solidBlack, pictureBox_genImage.DisplayRectangle);
-
-                //Now we should draw each polygon
-                foreach(var poly in stepOutput)
-                {
-                    g.FillPolygon(new SolidBrush(poly.baseColor), poly.vertices.ToArray());
-                }
-
-            }
-
-            pictureBox_genImage.Image = _genImage;
         }
 
         Mutex buttonChangeMutex = new Mutex();

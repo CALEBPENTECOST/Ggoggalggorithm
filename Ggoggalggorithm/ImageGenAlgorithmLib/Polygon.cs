@@ -11,6 +11,7 @@ namespace ImageGenAlgorithmLib
     {
         public List<Point> vertices { get; set; }
         public Color baseColor { get; set; }
+        public Boolean Ignore { get; set; }
 
         public IEnumerator<Point> GetEnumerator()
         {

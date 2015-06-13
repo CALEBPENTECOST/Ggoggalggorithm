@@ -37,9 +37,11 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_step = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_fitness = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel_lastbestfit = new System.Windows.Forms.ToolStripStatusLabel();
             this.backgroundWorker_stepProcessor = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.toolStripStatusLabel_numPolygons = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox_stepFuncs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_genImage)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -109,7 +111,7 @@
             // 
             this.pictureBox_genImage.Location = new System.Drawing.Point(3, 3);
             this.pictureBox_genImage.Name = "pictureBox_genImage";
-            this.pictureBox_genImage.Size = new System.Drawing.Size(89, 122);
+            this.pictureBox_genImage.Size = new System.Drawing.Size(94, 82);
             this.pictureBox_genImage.TabIndex = 1;
             this.pictureBox_genImage.TabStop = false;
             // 
@@ -117,7 +119,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel_step,
-            this.toolStripStatusLabel_fitness});
+            this.toolStripStatusLabel_fitness,
+            this.toolStripStatusLabel_lastbestfit,
+            this.toolStripStatusLabel_numPolygons});
             this.statusStrip1.Location = new System.Drawing.Point(0, 544);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
@@ -135,6 +139,12 @@
             this.toolStripStatusLabel_fitness.Name = "toolStripStatusLabel_fitness";
             this.toolStripStatusLabel_fitness.Size = new System.Drawing.Size(151, 17);
             this.toolStripStatusLabel_fitness.Text = "toolStripStatusLabel_fitness";
+            // 
+            // toolStripStatusLabel_lastbestfit
+            // 
+            this.toolStripStatusLabel_lastbestfit.Name = "toolStripStatusLabel_lastbestfit";
+            this.toolStripStatusLabel_lastbestfit.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel_lastbestfit.Text = "toolStripStatusLabel1";
             // 
             // backgroundWorker_stepProcessor
             // 
@@ -162,6 +172,12 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(578, 504);
             this.flowLayoutPanel1.TabIndex = 11;
+            // 
+            // toolStripStatusLabel_numPolygons
+            // 
+            this.toolStripStatusLabel_numPolygons.Name = "toolStripStatusLabel_numPolygons";
+            this.toolStripStatusLabel_numPolygons.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel_numPolygons.Text = "toolStripStatusLabel1";
             // 
             // AlgorithmStepForm
             // 
@@ -202,5 +218,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker_stepProcessor;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_lastbestfit;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_numPolygons;
     }
 }

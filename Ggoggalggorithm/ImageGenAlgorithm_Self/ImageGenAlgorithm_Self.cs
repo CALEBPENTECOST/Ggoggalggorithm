@@ -50,7 +50,7 @@ namespace ImageGenAlgorithm_Self
             currentColor = Color.Aqua;
         }
 
-        public void LoadImage(Image BaseImage)
+        public void LoadImage(Bitmap BaseImage)
         {
             x = (int)BaseImage.Width;
             y = (int)BaseImage.Height;

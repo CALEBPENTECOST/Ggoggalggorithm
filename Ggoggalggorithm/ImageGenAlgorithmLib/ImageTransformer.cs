@@ -26,8 +26,7 @@ namespace ImageGenAlgorithmLib
         /// </summary>
         /// <param name="BaseImage">The input image.</param>
         /// <param name="?"></param>
-        void LoadImage(Image BaseImage);
-
+        void LoadImage(Bitmap BaseImage);
 
         /// <summary>
         /// 

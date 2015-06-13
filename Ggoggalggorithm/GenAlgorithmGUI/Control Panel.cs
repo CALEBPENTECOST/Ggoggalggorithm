@@ -18,7 +18,7 @@ namespace GenAlgorithmGUI
     public partial class Control_Panel : Form
     {
         //Image related goodies
-        public Image previewImage = Properties.Resources.hoodoo;
+        public Bitmap previewImage = Properties.Resources.hoodoo;
         public string sourceFileName;
 
         //Parameter list
@@ -82,7 +82,8 @@ namespace GenAlgorithmGUI
             {
                 //We got a file by the looks of it. Lets open it!
 
-                previewImage = Image.FromFile(openFileDialog_openSourceImage.FileName);
+                previewImage = new Bitmap(Image.FromFile(openFileDialog_openSourceImage.FileName));
+                
 
                 //File open all okay, it seems.
                 refreshPreviewImage();
@@ -199,7 +200,7 @@ namespace GenAlgorithmGUI
 
             //Now we open a new window, and set it up with the algorithm
             ImageTransformer it = comboBox_algorithms.SelectedItem as ImageTransformer;
-            it.LoadImage(previewImage);
+            it.LoadImage((Bitmap)previewImage.Clone());
             ags = new AlgorithmStepForm(this, it);
             
             ags.Show();
